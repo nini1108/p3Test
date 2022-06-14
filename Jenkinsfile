@@ -21,8 +21,10 @@ pipeline {
                 dir("./front_end/")
                 sh 'npm start'
             }
-        }
+        }  
+    }
 
+    stages {
         stage('Create S3 bucket') {
             steps {
                 sh './scripts/s3.sh'
