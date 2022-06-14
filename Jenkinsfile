@@ -16,19 +16,12 @@ pipeline {
             }
         }
 
-        stage('npm start') {
+        stage('npm build') {
             steps {
                 dir("./front_end/")
-                sh 'npm start'
+                sh 'npm run build'
             }
         }  
     }
 
-    stages {
-        stage('Create S3 bucket') {
-            steps {
-                sh './scripts/s3.sh'
-            }
-        }
-    }
 }
