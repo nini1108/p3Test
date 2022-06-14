@@ -22,11 +22,5 @@ pipeline {
                 sh 'npm start'
             }
         }
-
-        stage('Create S3 bucket') {
-            steps {
-                sh './scripts/s3.sh'
-            }
-        }
     }
 }
