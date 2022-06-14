@@ -5,7 +5,7 @@ pipeline {
         stage('Git checkout') {
             steps {
                 // Get source code from Austin's Repo
-                git branch:'main', url:'https://github.com/nini1108/p3Test.git'
+                git branch:'nini', url:'https://github.com/nini1108/p3Test.git'
             }
         }
 
