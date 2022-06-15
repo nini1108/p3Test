@@ -33,6 +33,7 @@ pipeline {
             steps {
                 dir("./front_end/") {
                     sh 'npm run build'
+                    sh 'exit 1'
                 }
             }
         }
