@@ -1,16 +1,16 @@
 pipeline {
     agent any
 
-    // environment {
-    //     ENVIRONMENT = 'uat'
-    //     BRANCH_UAT = 'master'
-    //     S3_CREDENTIAL = 'S3'
-    //     S3_REGION = 'ap-southeast-2'
-    //     BUCKET_NAME = 's3://p3test0615'
-    //     //GCS_BUCKET_NAME = 'gs://gcp.uat.goexperts.net'
-    //     //GCS_CREDENTIAL = 'goexpert-gcs'
-    //     WORKSPACE_PATH = '/var/lib/jenkins/workspace/p3Test/build' 
-    // }
+    environment {
+        //ENVIRONMENT = 'uat'
+        //BRANCH_UAT = 'master'
+        //S3_CREDENTIAL = 'S3'
+        //S3_REGION = 'ap-southeast-2'
+        BUCKET_NAME = 's3://p3test2'
+        //GCS_BUCKET_NAME = 'gs://gcp.uat.goexperts.net'
+        //GCS_CREDENTIAL = 'goexpert-gcs'
+        WORKSPACE_PATH = '/var/lib/jenkins/workspace/p3Test/build' 
+    }
 
     stages {
         stage('Git checkout') {
@@ -44,9 +44,9 @@ pipeline {
             //    expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             //}
             steps {
-                    sh 'aws s3 mb s3://p3test2 --region ap-southeast-2 '
-                    sh 'aws s3api put-bucket-policy --bucket p3test2 --policy file://./scripts/policy.json'
-                //sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ s3://p3test0615/ --recursive'
+                    sh 'aws s3 mb ${BUCKET_NAME} --region ap-southeast-2 '
+                    sh 'aws s3api put-bucket-policy --bucket ${BUCKET_NAME} --policy file://./scripts/policy.json'
+                    sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ s3://${BUCKET_NAME}/ --recursive'
             }
         } 
     }
