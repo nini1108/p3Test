@@ -11,15 +11,18 @@ pipeline {
 
         stage('npm install') {
             steps { 
-                dir("./front_end/")
-                sh 'npm install'
+                dir("./front_end/") {
+                    sh 'npm install'
+                }
+                
             }
         }
 
         stage('npm build') {
             steps {
-                dir("./front_end/")
-                sh 'npm build'
+                dir("./front_end/") {
+                    sh 'npm build'
+                }
             }
         }
     }
