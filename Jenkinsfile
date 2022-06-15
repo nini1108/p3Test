@@ -44,7 +44,8 @@ pipeline {
             //    expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             //}
             steps {
-                    sh './scripts/create-s3-bucket.sh'
+                    sh 'aws s3 mb s3://p3test2 --region ap-southeast-2 '
+                    sh 'aws s3api put-bucket-policy --bucket p3test2 --policy file://./scripts/policy.json'
                 //sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ s3://p3test0615/ --recursive'
             }
         } 
