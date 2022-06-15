@@ -49,6 +49,8 @@ pipeline {
                     sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ ${BUCKET_NAME}/ --recursive'
                     //configure as a static website
                     sh 'aws s3 website ${BUCKET_NAME}/ --index-document index.html --error-document index.html'
+                    //add policy to s3
+                    sh 'aws s3api put-bucket-policy --bucket p3test2 --policy file://policy.json'
             }
         } 
     }
