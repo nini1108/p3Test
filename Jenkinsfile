@@ -46,7 +46,7 @@ pipeline {
             steps {
                     sh 'aws s3 mb ${BUCKET_NAME} --region ap-southeast-2'
                     //sh 'aws s3api put-bucket-policy --bucket ${BUCKET_NAME} --policy file://policy.json'
-                    sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ s3://${BUCKET_NAME}/ --recursive'
+                    sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ ${BUCKET_NAME}/ --recursive'
             }
         } 
     }
