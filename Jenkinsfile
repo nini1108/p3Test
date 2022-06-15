@@ -15,8 +15,13 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
+<<<<<<< HEAD
                 // Get source code from p3Test reepo
                 git branch:'main', url:'https://github.com/nini1108/p3Test.git'
+=======
+                // Get source code from Austin's Repo
+                git branch:'nini', url:'https://github.com/nini1108/p3Test.git'
+>>>>>>> refs/remotes/origin/nini
             }
         }
 
@@ -47,6 +52,7 @@ pipeline {
     }
 
 }
+<<<<<<< HEAD
 
  def deployToS3(environment) {
     echo 'Deploying to ' + environment + ' ...'
@@ -57,3 +63,5 @@ pipeline {
         sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
     //}
 }
+=======
+>>>>>>> refs/remotes/origin/nini
