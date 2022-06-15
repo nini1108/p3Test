@@ -20,30 +20,30 @@ pipeline {
             }
         }
 
-        stage('npm install') {
-            steps { 
-                dir("./front_end/") {
-                    sh 'npm install'
-                }
+        // stage('npm install') {
+        //     steps { 
+        //         dir("./front_end/") {
+        //             sh 'npm install'
+        //         }
                 
-            }
-        }
+        //     }
+        // }
 
-        stage('npm build') {
-            steps {
-                dir("./front_end/") {
-                    sh 'npm run build'
-                    sh 'exit 1'
-                }
-            }
-        }
+        // stage('npm build') {
+        //     steps {
+        //         dir("./front_end/") {
+        //             sh 'npm run build'
+        //             sh 'exit 1'
+        //         }
+        //     }
+        // }
 
         stage('Deploy') {
             // when {
             //    expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             //}
             steps {
-                sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/build/* s3://p3Test/ --recursive --acl public-read'
+                sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ s3://p3test0615/ --recursive'
             }
         } 
     }
