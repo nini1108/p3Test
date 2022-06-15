@@ -44,9 +44,7 @@ pipeline {
             //    expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             //}
             steps {
-                dir("./scripts/"){
-                    sh 'create-s3-bucket.sh'
-                }
+                    sh './scripts/create-s3-bucket.sh'
                 //sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ s3://p3test0615/ --recursive'
             }
         } 
