@@ -38,12 +38,16 @@ pipeline {
         //     }
         // }
 
+
         stage('Deploy') {
             // when {
             //    expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             //}
             steps {
-                sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ s3://p3test0615/ --recursive'
+                dir("./scripts/"){
+                    sh 'create-s3-bucket.sh'
+                }
+                //sh 'aws s3 cp /var/lib/jenkins/workspace/p3Test/front_end/build/ s3://p3test0615/ --recursive'
             }
         } 
     }
