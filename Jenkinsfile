@@ -40,9 +40,9 @@ pipeline {
 
 
         stage('Create S3 Bucket ...') {
-            // when {
-            //    expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            //}
+            when {
+               expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+            }
             steps {
                     sh 'aws s3 mb ${BUCKET_NAME} --region ap-southeast-2'
                     //sh 'aws s3api put-bucket-policy --bucket ${BUCKET_NAME} --policy file://policy.json'
@@ -53,6 +53,17 @@ pipeline {
                     sh 'aws s3api put-bucket-policy --bucket p3test2 --policy file://policy.json'
             }
         } 
+
+        
+    }
+
+        post {
+        success {
+            echo "http://p3test2.s3-website-ap-southeast-2.amazonaws.com"
+        }
+        failure {
+            echo "FAILED"
+        }
     }
 }
 
